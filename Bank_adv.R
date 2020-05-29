@@ -1,7 +1,7 @@
 rm(list=ls())
 
 getwd()
-setwd("E:\\Riz\\Edvancer\\Banking_Project")
+
 train = read.csv("bank-full_train.csv",stringsAsFactors = F,na.strings = 'unknown')
 test = read.csv("bank-full_test.csv",stringsAsFactors = F,na.strings = 'unknown')
 
@@ -18,6 +18,8 @@ glimpse(bank_proj)
 na_df = data.frame(sapply(bank_proj, function(x) sum(is.na(x))))
 na_df
 
+##IMPUTING MISSING VALUES WITH MODE FOR CATEGORICAL COLUMNS
+                          
 #Job
 head(bank_proj$job)
 table(bank_proj$job)
@@ -49,6 +51,7 @@ outlier_limits = function(x,k){
   names(x_limits) = NULL
   return(x_limits)
 }
+                          
 #Outliers for banking.
 ol_bal = outlier_limits(bank_proj$balance,1.5)
 ol_bal
@@ -236,7 +239,7 @@ head(test_last)
 test_class = as.numeric(test_last>KS_cutoff)
 head(test_class)
 
-write.csv(test_class,'Riyaz_Ali_P5_Part2.csv',row.names = F)
+
 
 
 
